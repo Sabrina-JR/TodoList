@@ -6,8 +6,8 @@ const data = JSON.parse(localStorage.getItem('listData')) || [];
 
 
 send.addEventListener('click',addData);
-list.addEventListener('click', bedone);
-UpdateList(data)
+list.addEventListener('click', beDone);
+upDateList(data)
 
 function addData(e){
   e.preventDefault();
@@ -20,13 +20,13 @@ function addData(e){
   //傳入到 localStorage
   data.push(todo)
   localStorage.setItem('listData', JSON.stringify(data))
-  UpdateList(data)
+  upDateList(data)
 
 }
  
 
 //更新列表內容 items = data
-function UpdateList(items){
+function upDateList(items){
     str = '';
     let lengh = items.length;
     for (let i = 0; lengh > i; i++) {
@@ -36,13 +36,13 @@ function UpdateList(items){
         <span>${items[i].key}</span>
       </li>
       `
-      list.innerHTML = str; 
     }
+    list.innerHTML = str; 
 }
 
 
 //刪除事件
-function bedone(e){
+function beDone(e){
 e.preventDefault();
   if(e.target.nodeName !== "A"){return}
   //取出刪除項目的data
@@ -50,5 +50,5 @@ e.preventDefault();
   //刪除選項第一筆
   data.splice(index,1);
   localStorage.setItem('listData', JSON.stringify(data))
-  UpdateList(data);
+  upDateList(data);
 }
